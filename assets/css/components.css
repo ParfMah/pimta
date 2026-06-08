@@ -735,17 +735,19 @@ textarea.form-control {
 .price--gold { color: var(--color-gold); }
 
 /* ============================================================
-   STYLE DU LIEN DE LA NAVIGATION ACTIVE
+   STYLE COMPOSANT : LIEN DE NAVIGATION ACTIF (FORCE)
    ============================================================ */
-/* On cible le lien qui aura la classe .active */
+#site-header-placeholder a.active,
+.site-header a.active,
 .header-nav a.active,
 .nav-link.active {
-  color: var(--color-gold, #d4af37) !important; /* Devient doré */
-  font-weight: var(--weight-semibold, 600) !important; /* Devient un peu plus épais */
-  position: relative;
+  color: var(--color-gold, #d4af37) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
 }
 
-/* Optionnel : Ajoute une fine ligne dorée sous le lien actif pour un effet premium */
+/* Ligne dorée sous le lien actif */
+#site-header-placeholder a.active::after,
 .header-nav a.active::after,
 .nav-link.active::after {
   content: '';
@@ -754,5 +756,6 @@ textarea.form-control {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--color-gold, #d4af37);
+  background-color: var(--color-gold, #d4af37) !important;
+  display: block !important;
 }

@@ -582,36 +582,38 @@ console.log('%c🌿 PIMTABHAS', 'font-size:20px;color:#0F6A4B;font-weight:bold')
 console.log('%cPlateforme Internationale de Médecine Traditionnelle Africaine', 'color:#D4AF37');
 
 /* ============================================================
-   GESTION AUTOMATIQUE DES LIENS ACTIFS DE LA NAVIGATION
+   GESTION DYNAMIQUE ET SÉCURISÉE DES LIENS ACTIFS (OBSERVER)
    ============================================================ */
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. On récupère le nom du fichier actuel (ex: "fondateur.html")
-  const currentPath = window.location.pathname;
-  const currentFile = currentPath.split("/").pop();
-
-  // 2. On sélectionne tous les liens présents dans le header
-  // (Ajuste le sélecteur si tes liens ont une classe spécifique comme .nav-link)
+function highlightActiveLink() {
+  const currentFile = window.location.pathname.split("/").pop();
   const navLinks = document.querySelectorAll("#site-header-placeholder a, .header-nav a, .nav-link");
 
   navLinks.forEach(link => {
     const linkHref = link.getAttribute("href");
     if (!linkHref) return;
 
-    // On extrait le nom du fichier du lien (ex: "contact.html")
     const linkFile = linkHref.split("/").pop();
 
-    // 3. COMPARISON ET APPLICATION
-    // Cas 1 : Si on est à la racine du site (Render ou local) et que le lien pointe vers l'accueil
+    // Vérification de la correspondance (index.html ou racine vide)
     if ((currentFile === "" || currentFile === "index.html") && (linkFile === "index.html" || linkFile === "")) {
       link.classList.add("active");
-    } 
-    // Cas 2 : Si le nom du fichier correspond exactement
-    else if (currentFile === linkFile && currentFile !== "") {
+    } else if (currentFile === linkFile && currentFile !== "") {
       link.classList.add("active");
-    } 
-    // Sinon, on s'assure de retirer la classe
-    else {
+    } else {
       link.classList.remove("active");
     }
   });
-});
+}
+
+// 1. Exécution immédiate au cas où le menu est déjà chargé
+document.addEventListener("DOMContentLoaded", highlightActiveLink);
+
+// 2. Surveillance du placeholder pour appliquer le style dès que le header est injecté
+const placeholder = document.getElementById("site-header-placeholder");
+if (placeholder) {
+  const observer = new MutationObserver((mutations, obs) => {
+    highlightActiveLink();
+    // Optionnel : on peut arrêter d'observer une fois injecté si nécessaire
+  });
+  observer.observe(placeholder, { childList: true, subtree: true });
+}
