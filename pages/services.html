@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Découvrez tous les services de PIMTABHAS : consultations traditionnelles, accompagnement spirituel, consultation divinatoire, produits naturels et suivi personnalisé."/>
+  <meta name="description" content="Tous nos services — PIMTABHAS. Consultations traditionnelles, accompagnement spirituel, consultation divinatoire, produits naturels et suivi personnalisé."/>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg"/>
   <title>Nos Services — PIMTABHAS</title>
   <link rel="stylesheet" href="../assets/css/variables.css"/>
@@ -14,23 +14,161 @@
   <link rel="stylesheet" href="../assets/css/animations.css"/>
   <link rel="stylesheet" href="../assets/css/pages.css"/>
   <style>
-    .service-detail{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center;padding:var(--space-16) 0;border-bottom:1px solid var(--color-gray-100);}
-    .service-detail:last-child{border-bottom:none;}
-    .service-detail:nth-child(even) .service-detail__text{order:-1;}
-    .service-detail__visual{background:var(--gradient-premium);border-radius:var(--radius-3xl);min-height:400px;display:flex;align-items:center;justify-content:center;font-size:6rem;border:1px solid rgba(212,175,55,.15);position:relative;overflow:hidden;}
-    .service-detail__visual::before{content:'';position:absolute;inset:0;background-image:url('../assets/images/pattern-adinkra.svg');background-size:100px;background-repeat:repeat;opacity:.04;color:white;}
-    .pricing-card{background:var(--color-white);border-radius:var(--radius-2xl);padding:var(--space-8);border:2px solid var(--color-gray-100);box-shadow:var(--shadow-card);transition:all var(--transition-slow);position:relative;overflow:hidden;}
-    .pricing-card:hover{border-color:var(--color-emerald);box-shadow:var(--shadow-xl);}
-    .pricing-card--featured{border-color:var(--color-gold);background:var(--gradient-night);}
-    .pricing-card--featured::before{content:'Recommandé';position:absolute;top:var(--space-4);right:var(--space-4);background:var(--gradient-cta);color:var(--color-night);font-family:var(--font-accent);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:var(--radius-full);}
-    .pricing-name{font-family:var(--font-display);font-size:var(--text-xl);font-weight:var(--weight-bold);margin-bottom:var(--space-2);}
-    .pricing-price{font-family:var(--font-display);font-size:var(--text-4xl);font-weight:var(--weight-bold);color:var(--color-emerald);line-height:1;margin:var(--space-4) 0;}
-    .pricing-card--featured .pricing-price{color:var(--color-gold);}
-    .pricing-period{font-size:var(--text-sm);color:var(--color-gray-400);font-family:var(--font-ui);}
-    .pricing-features{margin:var(--space-6) 0;display:flex;flex-direction:column;gap:var(--space-3);}
-    .pricing-feature{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);}
-    .pricing-feature-icon{color:var(--color-emerald);font-weight:bold;flex-shrink:0;}
-    @media(max-width:1023px){.service-detail{grid-template-columns:1fr;gap:var(--space-8);}.service-detail:nth-child(even) .service-detail__text{order:0;}.service-detail__visual{min-height:220px;font-size:4rem;}}
+    /* ── SERVICES PAGE ── */
+    .service-detail-card {
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(15,26,42,0.06);
+      transition: all var(--transition-slow);
+      display: flex;
+      flex-direction: column;
+    }
+    .service-detail-card:hover {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-4px);
+    }
+    .service-detail-header {
+      background: var(--gradient-premium);
+      padding: var(--space-8);
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+    }
+    .service-detail-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-xl);
+      background: rgba(212,175,55,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      flex-shrink: 0;
+    }
+    .service-detail-name {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-cream);
+      margin-bottom: var(--space-1);
+    }
+    .service-detail-category {
+      font-family: var(--font-accent);
+      font-size: var(--text-xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+    }
+    .service-detail-body {
+      padding: var(--space-8);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .service-detail-desc {
+      font-size: var(--text-sm);
+      color: var(--color-gray-600);
+      line-height: var(--leading-relaxed);
+    }
+    .service-detail-includes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .service-include-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-night);
+    }
+    .service-include-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-emerald-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-emerald);
+      font-size: 0.7rem;
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .service-detail-footer {
+      padding: var(--space-6) var(--space-8);
+      border-top: 1px solid var(--color-gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .service-price {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-emerald);
+    }
+    .service-price-label {
+      font-size: var(--text-xs);
+      color: var(--color-gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* ── MODE CARDS ── */
+    .mode-card {
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6);
+      border: 1px solid rgba(15,26,42,0.06);
+      box-shadow: var(--shadow-card);
+      text-align: center;
+      transition: all var(--transition-slow);
+    }
+    .mode-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      border-color: var(--color-emerald);
+    }
+    .mode-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-3);
+    }
+    .mode-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-night);
+      margin-bottom: var(--space-2);
+    }
+    .mode-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-gray-600);
+      line-height: var(--leading-relaxed);
+    }
+
+    @media (max-width: 767px) {
+      .service-detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-6);
+      }
+      .service-detail-body {
+        padding: var(--space-6);
+      }
+      .service-detail-footer {
+        padding: var(--space-5) var(--space-6);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
   <link rel="stylesheet" href="../assets/css/responsive.css"/>
 </head>
@@ -38,187 +176,336 @@
 <div class="toast-container"></div>
 <div id="site-header-placeholder"></div>
 
-<!-- HERO -->
-<section class="page-hero">
-  <div style="position:absolute;inset:0;background-image:url('../assets/images/pattern-adinkra.svg');background-size:180px;background-repeat:repeat;opacity:.04;color:white;" aria-hidden="true"></div>
+<!-- ── HERO ── -->
+<section class="page-hero" aria-label="Nos Services">
+  <div style="position:absolute;inset:0;background-image:url('../assets/images/pattern-adinkra.svg');background-size:180px;opacity:.04;color:white;" aria-hidden="true"></div>
   <div class="page-hero__content">
-    <div class="breadcrumb" style="margin-bottom:var(--space-4)"><a href="../index.html">Accueil</a><span class="breadcrumb__sep">›</span><span>Nos Services</span></div>
+    <div class="breadcrumb" style="margin-bottom:var(--space-4)">
+      <a href="../index.html">Accueil</a>
+      <span class="breadcrumb__sep">›</span>
+      <span>Nos Services</span>
+    </div>
     <p class="section-label" style="margin-bottom:var(--space-4)">Ce que nous offrons</p>
     <h1 class="page-hero__title">Nos Services<br/><em style="color:var(--color-gold)">Holistiques</em></h1>
-    <p class="page-hero__subtitle">Un accompagnement complet et personnalisé alliant médecine traditionnelle africaine, bien-être holistique et spiritualité.</p>
+    <p class="page-hero__subtitle">Des services personnalisés alliant tradition ancestrale africaine et accompagnement contemporain, pour votre bien-être global.</p>
   </div>
 </section>
 
-<!-- INTRO -->
-<section class="section" style="background:var(--color-cream-dark)">
-  <div class="container" style="text-align:center;max-width:var(--container-md)">
-    <div class="reveal">
-      <div class="alert alert--info" style="max-width:680px;margin:0 auto var(--space-8)">
-        <span>ℹ</span>
-        <span>Tous nos services sont présentés comme des <strong>consultations, accompagnements et conseils personnalisés</strong>. PIMTABHAS ne formule aucune allégation de guérison garantie et encourage le maintien d'un suivi médical conventionnel.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES DÉTAILLÉS -->
-<section class="section">
-  <div class="container">
-
-    <div class="service-detail reveal">
-      <div class="service-detail__visual">🌿</div>
-      <div class="service-detail__text">
-        <p class="section-label section-label--dark" style="margin-bottom:var(--space-4)">Service 01</p>
-        <h2 class="section-title">Consultation<br/><span class="text-emerald">Traditionnelle</span></h2>
-        <p style="color:var(--color-gray-700);line-height:var(--leading-loose);margin-bottom:var(--space-6)">La consultation traditionnelle constitue le cœur de notre démarche. Elle permet un bilan holistique approfondi de votre situation, intégrant les dimensions physiques, émotionnelles et énergétiques selon les savoirs ancestraux africains.</p>
-        <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8)">
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Bilan personnalisé de votre état global</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Identification des déséquilibres selon la vision traditionnelle</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Recommandations de plantes et préparations adaptées</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Conseils de mode de vie holistiques</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Compte-rendu écrit accessible depuis votre espace client</span></div>
-        </div>
-        <div style="display:flex;gap:var(--space-4)">
-          <a href="consultations.html" class="btn btn--secondary">Réserver une consultation</a>
-          <a href="consultations.html#tarifs" class="btn btn--outline-gold">Voir les tarifs</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="service-detail reveal">
-      <div class="service-detail__visual">🔮</div>
-      <div class="service-detail__text">
-        <p class="section-label section-label--dark" style="margin-bottom:var(--space-4)">Service 02</p>
-        <h2 class="section-title">Accompagnement<br/><span class="text-emerald">Spirituel</span></h2>
-        <p style="color:var(--color-gray-700);line-height:var(--leading-loose);margin-bottom:var(--space-6)">L'accompagnement spirituel est une démarche de guidance profonde qui vise à aider la personne à se reconnecter à ses ressources intérieures, à clarifier son chemin de vie et à développer une sérénité et un équilibre durables.</p>
-        <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8)">
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Session d'écoute et d'orientation spirituelle</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Exploration de votre parcours de vie et de vos blocages</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Pratiques de protection et d'ancrage énergétique</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Rituels de clarification et d'ouverture des voies</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Programme de suivi spirituel personnalisé</span></div>
-        </div>
-        <div style="display:flex;gap:var(--space-4)">
-          <a href="consultation-spirituelle.html" class="btn btn--secondary">En savoir plus</a>
-          <a href="consultations.html" class="btn btn--outline-gold">Prendre rendez-vous</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="service-detail reveal">
-      <div class="service-detail__visual">✨</div>
-      <div class="service-detail__text">
-        <p class="section-label section-label--dark" style="margin-bottom:var(--space-4)">Service 03</p>
-        <h2 class="section-title">Consultation<br/><span class="text-emerald">Divinatoire</span></h2>
-        <p style="color:var(--color-gray-700);line-height:var(--leading-loose);margin-bottom:var(--space-6)">La consultation divinatoire utilise les techniques traditionnelles africaines pour apporter un éclairage sur vos questionnements, vous aider à mieux comprendre votre situation et vous orienter vers les décisions les plus alignées avec votre chemin de vie.</p>
-        <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8)">
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Lecture et interprétation des signes traditionnels</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Éclairage sur les questions personnelles, familiales ou professionnelles</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Conseils pour une prise de décision éclairée</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Préconisations de protection et d'action</span></div>
-        </div>
-        <div style="display:flex;gap:var(--space-4)">
-          <a href="consultation-divinatoire.html" class="btn btn--secondary">En savoir plus</a>
-          <a href="consultations.html" class="btn btn--outline-gold">Prendre rendez-vous</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="service-detail reveal">
-      <div class="service-detail__visual">🌱</div>
-      <div class="service-detail__text">
-        <p class="section-label section-label--dark" style="margin-bottom:var(--space-4)">Service 04</p>
-        <h2 class="section-title">Boutique de Produits<br/><span class="text-emerald">Naturels</span></h2>
-        <p style="color:var(--color-gray-700);line-height:var(--leading-loose);margin-bottom:var(--space-6)">Notre boutique propose une gamme rigoureusement sélectionnée de produits naturels africains : tisanes, huiles, poudres, encens et préparations artisanales, élaborés selon les méthodes traditionnelles et expédiés en toute sécurité.</p>
-        <div style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8)">
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Plus de 120 produits naturels disponibles</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Sélection et contrôle qualité rigoureux</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Préparations artisanales selon les formules ancestrales</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Livraison internationale sécurisée</span></div>
-          <div class="credential-item"><span class="credential-icon">✓</span><span>Conseils d'utilisation personnalisés</span></div>
-        </div>
-        <a href="boutique.html" class="btn btn--secondary">Visiter la boutique</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TARIFS -->
-<section class="section section--dark" id="tarifs">
+<!-- ── INTRO ── -->
+<section class="section section--cream">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-label">Investissement</div>
-      <h2 class="section-title section-title--light">Nos Formules<br/><em class="text-gold">& Tarifs</em></h2>
-      <p class="section-subtitle section-subtitle--light">Des formules flexibles adaptées à vos besoins et à votre budget. Paiement sécurisé en ligne ou en présentiel.</p>
+      <div class="section-label section-label--dark">Notre approche</div>
+      <h2 class="section-title">Un Accompagnement<br/><span class="text-emerald">Complet & Personnalisé</span></h2>
+      <p class="section-subtitle section-subtitle--center" style="color:var(--color-gray-600)">
+        Chaque service est conçu pour répondre à vos besoins spécifiques, en combinant les savoirs ancestraux africains avec une approche humaine, bienveillante et professionnelle.
+      </p>
     </div>
+  </div>
+</section>
+
+<!-- ── SERVICES PRINCIPAUX ── -->
+<section class="section" aria-labelledby="services-main-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label section-label--dark">Consultations</div>
+      <h2 class="section-title" id="services-main-title">Nos Consultations<br/><em class="text-gold">Spécialisées</em></h2>
+    </div>
+
+    <div class="grid grid--2 stagger" style="gap:var(--space-6)">
+
+      <!-- Consultation Traditionnelle -->
+      <article class="service-detail-card reveal" role="listitem">
+        <div class="service-detail-header">
+          <div class="service-detail-icon">🌿</div>
+          <div>
+            <div class="service-detail-category">Consultation</div>
+            <h3 class="service-detail-name">Consultation Traditionnelle</h3>
+          </div>
+        </div>
+        <div class="service-detail-body">
+          <p class="service-detail-desc">
+            Bilan holistique personnalisé intégrant les savoirs ancestraux africains pour identifier les déséquilibres physiques, émotionnels et énergétiques, et proposer des approches naturelles adaptées.
+          </p>
+          <div class="service-detail-includes">
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Entretien approfondi de 60 à 90 minutes</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Analyse holistique selon les traditions africaines</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Recommandations personnalisées et prescriptions naturelles</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Disponible en présentiel et en ligne</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-footer">
+          <div>
+            <div class="service-price">Sur devis</div>
+            <div class="service-price-label">Tarif selon la durée</div>
+          </div>
+          <a href="consultations.html" class="btn btn--secondary btn--sm">Réserver</a>
+        </div>
+      </article>
+
+      <!-- Accompagnement Spirituel -->
+      <article class="service-detail-card reveal delay-200" role="listitem">
+        <div class="service-detail-header">
+          <div class="service-detail-icon">🔮</div>
+          <div>
+            <div class="service-detail-category">Accompagnement</div>
+            <h3 class="service-detail-name">Accompagnement Spirituel</h3>
+          </div>
+        </div>
+        <div class="service-detail-body">
+          <p class="service-detail-desc">
+            Guidance spirituelle basée sur les traditions africaines pour clarifier votre chemin de vie, renforcer votre ancrage intérieur et développer votre sérénité.
+          </p>
+          <div class="service-detail-includes">
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Session d'écoute et d'orientation spirituelle</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Pratiques de reconnexion à soi</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Conseils de rituels et de protection</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Suivi spirituel personnalisé</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-footer">
+          <div>
+            <div class="service-price">Sur devis</div>
+            <div class="service-price-label">Tarif selon la durée</div>
+          </div>
+          <a href="consultation-spirituelle.html" class="btn btn--secondary btn--sm">Réserver</a>
+        </div>
+      </article>
+
+      <!-- Consultation Divinatoire -->
+      <article class="service-detail-card reveal" role="listitem">
+        <div class="service-detail-header">
+          <div class="service-detail-icon">✨</div>
+          <div>
+            <div class="service-detail-category">Divination</div>
+            <h3 class="service-detail-name">Consultation Divinatoire</h3>
+          </div>
+        </div>
+        <div class="service-detail-body">
+          <p class="service-detail-desc">
+            Session d'éclairage divinatoire par les techniques traditionnelles africaines pour obtenir des orientations sur vos questionnements personnels, familiaux ou professionnels.
+          </p>
+          <div class="service-detail-includes">
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Lecture des signes traditionnels</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Interprétation personnalisée</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Orientations concrètes pour vos décisions</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Confidentialité totale garantie</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-footer">
+          <div>
+            <div class="service-price">Sur devis</div>
+            <div class="service-price-label">Tarif selon la durée</div>
+          </div>
+          <a href="consultation-divinatoire.html" class="btn btn--secondary btn--sm">Réserver</a>
+        </div>
+      </article>
+
+      <!-- Suivi Personnalisé -->
+      <article class="service-detail-card reveal delay-200" role="listitem">
+        <div class="service-detail-header">
+          <div class="service-detail-icon">📅</div>
+          <div>
+            <div class="service-detail-category">Suivi</div>
+            <h3 class="service-detail-name">Suivi Personnalisé</h3>
+          </div>
+        </div>
+        <div class="service-detail-body">
+          <p class="service-detail-desc">
+            Programme de suivi régulier avec votre praticien référent : bilans d'évolution, ajustements des recommandations et accompagnement continu dans la durée.
+          </p>
+          <div class="service-detail-includes">
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Bilans d'évolution réguliers</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Ajustements des prescriptions naturelles</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Accès à votre espace client sécurisé</span>
+            </div>
+            <div class="service-include-item">
+              <div class="service-include-icon">✓</div>
+              <span>Historique complet de votre parcours</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-detail-footer">
+          <div>
+            <div class="service-price">Sur abonnement</div>
+            <div class="service-price-label">Programme mensuel</div>
+          </div>
+          <a href="espace-client.html" class="btn btn--secondary btn--sm">Mon espace</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MODES DE CONSULTATION ── -->
+<section class="section section--cream" aria-labelledby="modes-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label section-label--dark">Où et comment</div>
+      <h2 class="section-title" id="modes-title">Modes de<br/><span class="text-emerald">Consultation</span></h2>
+    </div>
+
     <div class="grid grid--3 stagger" style="gap:var(--space-6)">
-      <div class="pricing-card reveal">
-        <div class="pricing-name">Consultation Simple</div>
-        <div class="pricing-price">25 000 <span class="pricing-period">FCFA</span></div>
-        <p style="font-size:var(--text-sm);color:var(--color-gray-500);margin-bottom:var(--space-6)" class="card-desc">Une session unique pour un premier accompagnement.</p>
-        <div class="pricing-features">
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>1 session de 45–60 min</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>Bilan holistique initial</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>Compte-rendu écrit</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>En présentiel ou en ligne</span></div>
+      <div class="mode-card reveal">
+        <div class="mode-card__icon">🏛️</div>
+        <h3 class="mode-card__title">En Présentiel</h3>
+        <p class="mode-card__desc">Consultations dans nos centres d'accueil au Bénin, Togo, Burkina Faso, Mali et Sénégal. Rencontre directe avec le Grand Maître KPALIKA.</p>
+        <div style="margin-top:var(--space-5)">
+          <span style="font-size:var(--text-xs);color:var(--color-gray-400);text-transform:uppercase;letter-spacing:.1em">5 pays disponibles</span>
         </div>
-        <a href="consultations.html" class="btn btn--secondary" style="width:100%;justify-content:center">Réserver</a>
       </div>
-      <div class="pricing-card pricing-card--featured reveal delay-200">
-        <div class="pricing-name" style="color:var(--color-gold)">Suivi Mensuel</div>
-        <div class="pricing-price">65 000 <span class="pricing-period">FCFA / mois</span></div>
-        <p style="font-size:var(--text-sm);color:rgba(248,246,240,.6);margin-bottom:var(--space-6)">Un accompagnement continu pour des résultats durables.</p>
-        <div class="pricing-features">
-          <div class="pricing-feature" style="color:rgba(248,246,240,.9)"><span style="color:var(--color-gold)">✓</span><span>3 sessions par mois</span></div>
-          <div class="pricing-feature" style="color:rgba(248,246,240,.9)"><span style="color:var(--color-gold)">✓</span><span>Suivi évolutif personnalisé</span></div>
-          <div class="pricing-feature" style="color:rgba(248,246,240,.9)"><span style="color:var(--color-gold)">✓</span><span>Accès à l'espace patient</span></div>
-          <div class="pricing-feature" style="color:rgba(248,246,240,.9)"><span style="color:var(--color-gold)">✓</span><span>Produits recommandés -10%</span></div>
-          <div class="pricing-feature" style="color:rgba(248,246,240,.9)"><span style="color:var(--color-gold)">✓</span><span>Support WhatsApp dédié</span></div>
+
+      <div class="mode-card reveal delay-200">
+        <div class="mode-card__icon">💻</div>
+        <h3 class="mode-card__title">En Ligne</h3>
+        <p class="mode-card__desc">Sessions par visioconférence depuis n'importe où dans le monde. Idéal pour la diaspora africaine et les personnes à l'international.</p>
+        <div style="margin-top:var(--space-5)">
+          <span style="font-size:var(--text-xs);color:var(--color-gray-400);text-transform:uppercase;letter-spacing:.1em">7j/7 disponible</span>
         </div>
-        <a href="consultations.html" class="btn btn--primary" style="width:100%;justify-content:center">Commencer</a>
       </div>
-      <div class="pricing-card reveal delay-300">
-        <div class="pricing-name">Programme Intensif</div>
-        <div class="pricing-price">150 000 <span class="pricing-period">FCFA</span></div>
-        <p style="font-size:var(--text-sm);color:var(--color-gray-500);margin-bottom:var(--space-6)" class="card-desc">Programme complet sur 3 mois pour transformation profonde.</p>
-        <div class="pricing-features">
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>Consultation initiale approfondie</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>10 sessions incluses</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>Coffret de produits offert</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>Accès prioritaire agenda</span></div>
-          <div class="pricing-feature"><span class="pricing-feature-icon">✓</span><span>Rapport de fin de programme</span></div>
+
+      <div class="mode-card reveal delay-300">
+        <div class="mode-card__icon">📞</div>
+        <h3 class="mode-card__title">Par Téléphone</h3>
+        <p class="mode-card__desc">Consultations par appel téléphonique pour les personnes préférant ce canal. Simple, accessible et confidentiel.</p>
+        <div style="margin-top:var(--space-5)">
+          <span style="font-size:var(--text-xs);color:var(--color-gray-400);text-transform:uppercase;letter-spacing:.1em">Lun–Sam 8h–20h</span>
         </div>
-        <a href="consultations.html" class="btn btn--secondary" style="width:100%;justify-content:center">Réserver</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:var(--space-8);font-size:var(--text-sm);color:rgba(248,246,240,.5)">Tarifs en Francs CFA. Des équivalences en EUR, USD et GBP sont disponibles. Paiement en ligne sécurisé accepté.</p>
   </div>
 </section>
 
-<!-- FAQ RAPIDE -->
-<section class="section">
-  <div class="container" style="max-width:var(--container-md)">
+<!-- ── PRODUITS NATURELS ── -->
+<section class="section section--dark" aria-labelledby="produits-title">
+  <div class="container">
     <div class="section-header reveal">
-      <div class="section-label section-label--dark">Vos questions</div>
-      <h2 class="section-title">Questions<br/><span class="text-emerald">Fréquentes</span></h2>
+      <div class="section-label">Notre boutique</div>
+      <h2 class="section-title section-title--light" id="produits-title">
+        Produits Naturels<br/><em class="text-gold">Sélectionnés avec Soin</em>
+      </h2>
+      <p class="section-subtitle section-subtitle--light">
+        Complémentez votre accompagnement avec notre gamme de produits naturels issus des traditions africaines ancestrales.
+      </p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:var(--space-3)">
-      <details class="card reveal" style="padding:var(--space-5);cursor:pointer">
-        <summary style="font-family:var(--font-ui);font-weight:var(--weight-semibold);color:var(--color-night);list-style:none;display:flex;justify-content:space-between;align-items:center">Comment se déroule une consultation en ligne ? <span style="color:var(--color-emerald)">+</span></summary>
-        <p style="margin-top:var(--space-4);font-size:var(--text-sm);color:var(--color-gray-600)">Après votre réservation, vous recevez un lien de connexion sécurisé par email. La session se déroule par visioconférence (Zoom ou Google Meet) à l'heure convenue, dans les mêmes conditions qu'une consultation en présentiel.</p>
-      </details>
-      <details class="card reveal delay-200" style="padding:var(--space-5);cursor:pointer">
-        <summary style="font-family:var(--font-ui);font-weight:var(--weight-semibold);color:var(--color-night);list-style:none;display:flex;justify-content:space-between;align-items:center">Les consultations sont-elles confidentielles ? <span style="color:var(--color-emerald)">+</span></summary>
-        <p style="margin-top:var(--space-4);font-size:var(--text-sm);color:var(--color-gray-600)">Absolument. Toutes les informations partagées lors des consultations sont strictement confidentielles et protégées par notre politique de confidentialité rigoureuse.</p>
-      </details>
-      <details class="card reveal delay-300" style="padding:var(--space-5);cursor:pointer">
-        <summary style="font-family:var(--font-ui);font-weight:var(--weight-semibold);color:var(--color-night);list-style:none;display:flex;justify-content:space-between;align-items:center">Quels modes de paiement sont acceptés ? <span style="color:var(--color-emerald)">+</span></summary>
-        <p style="margin-top:var(--space-4);font-size:var(--text-sm);color:var(--color-gray-600)">Nous acceptons les paiements par carte bancaire, Mobile Money (MTN, Orange, Moov), virement bancaire et paiement en espèces pour les consultations en présentiel.</p>
-      </details>
+
+    <div class="grid grid--3 stagger" style="gap:var(--space-6)">
+      <div class="card card--premium reveal" style="padding:var(--space-8);text-align:center">
+        <div style="font-size:3.5rem;margin-bottom:var(--space-4)">🌿</div>
+        <h3 style="font-family:var(--font-display);color:var(--color-gold);font-size:var(--text-xl);margin-bottom:var(--space-3)">Tisanes & Infusions</h3>
+        <p style="font-size:var(--text-sm);color:rgba(248,246,240,.7);line-height:var(--leading-relaxed);margin-bottom:var(--space-5)">Mélanges de plantes médicinales préparés selon les formules ancestrales pour votre équilibre quotidien.</p>
+        <a href="boutique.html" class="btn btn--outline-gold btn--sm">Voir la gamme</a>
+      </div>
+
+      <div class="card card--premium reveal delay-200" style="padding:var(--space-8);text-align:center">
+        <div style="font-size:3.5rem;margin-bottom:var(--space-4)">🍶</div>
+        <h3 style="font-family:var(--font-display);color:var(--color-gold);font-size:var(--text-xl);margin-bottom:var(--space-3)">Huiles & Essences</h3>
+        <p style="font-size:var(--text-sm);color:rgba(248,246,240,.7);line-height:var(--leading-relaxed);margin-bottom:var(--space-5)">Huiles sacrées et essences naturelles pour la protection, la purification et le bien-être spirituel.</p>
+        <a href="boutique.html" class="btn btn--outline-gold btn--sm">Voir la gamme</a>
+      </div>
+
+      <div class="card card--premium reveal delay-300" style="padding:var(--space-8);text-align:center">
+        <div style="font-size:3.5rem;margin-bottom:var(--space-4)">💎</div>
+        <h3 style="font-family:var(--font-display);color:var(--color-gold);font-size:var(--text-xl);margin-bottom:var(--space-3)">Coffrets Premium</h3>
+        <p style="font-size:var(--text-sm);color:rgba(248,246,240,.7);line-height:var(--leading-relaxed);margin-bottom:var(--space-5)">Coffrets complets combinant plusieurs produits pour un accompagnement holistique sur mesure.</p>
+        <a href="boutique.html" class="btn btn--outline-gold btn--sm">Voir la gamme</a>
+      </div>
     </div>
-    <div style="text-align:center;margin-top:var(--space-8)">
-      <a href="faq.html" class="btn btn--outline-gold">Voir toutes les FAQ</a>
+  </div>
+</section>
+
+<!-- ── PROCESSUS ── -->
+<section class="section section--cream" aria-labelledby="process-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label section-label--dark">Comment ça marche</div>
+      <h2 class="section-title" id="process-title">Votre Parcours en<br/><span class="text-emerald">4 Étapes</span></h2>
+    </div>
+
+    <div class="grid grid--4 stagger reveal" style="gap:var(--space-6)">
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--color-white);border:3px solid var(--color-emerald);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);font-family:var(--font-accent);font-size:var(--text-xl);font-weight:var(--weight-bold);color:var(--color-emerald);box-shadow:var(--shadow-emerald)">01</div>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);color:var(--color-night);margin-bottom:var(--space-2)">Inscription</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-gray-600);line-height:var(--leading-relaxed)">Créez votre espace client sécurisé en quelques minutes.</p>
+      </div>
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--color-white);border:3px solid var(--color-emerald);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);font-family:var(--font-accent);font-size:var(--text-xl);font-weight:var(--weight-bold);color:var(--color-emerald);box-shadow:var(--shadow-emerald)">02</div>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);color:var(--color-night);margin-bottom:var(--space-2)">Réservation</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-gray-600);line-height:var(--leading-relaxed)">Choisissez votre service et réservez en ligne.</p>
+      </div>
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--color-white);border:3px solid var(--color-emerald);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);font-family:var(--font-accent);font-size:var(--text-xl);font-weight:var(--weight-bold);color:var(--color-emerald);box-shadow:var(--shadow-emerald)">03</div>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);color:var(--color-night);margin-bottom:var(--space-2)">Consultation</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-gray-600);line-height:var(--leading-relaxed)">Rencontrez votre praticien en présentiel ou en ligne.</p>
+      </div>
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--color-white);border:3px solid var(--color-emerald);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);font-family:var(--font-accent);font-size:var(--text-xl);font-weight:var(--weight-bold);color:var(--color-emerald);box-shadow:var(--shadow-emerald)">04</div>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);color:var(--color-night);margin-bottom:var(--space-2)">Suivi</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-gray-600);line-height:var(--leading-relaxed)">Bénéficiez d'un accompagnement continu dans la durée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="section" style="background:var(--gradient-premium)">
+  <div class="container" style="text-align:center">
+    <div class="reveal">
+      <h2 style="font-family:var(--font-display);color:var(--color-cream);font-size:clamp(1.75rem,4vw,3rem);margin-bottom:var(--space-4)">
+        Prêt à Commencer ?<br/><em style="color:var(--color-gold)">Prenez Rendez-vous</em>
+      </h2>
+      <p style="color:rgba(248,246,240,.75);max-width:50ch;margin:0 auto var(--space-8)">
+        Nos praticiens sont disponibles pour vous accueillir en présentiel ou en ligne, 7 jours sur 7.
+      </p>
+      <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
+        <a href="consultations.html" class="btn btn--primary btn--xl">Réserver une consultation</a>
+        <a href="contact.html" class="btn btn--outline-cream btn--xl">Nous contacter</a>
+      </div>
     </div>
   </div>
 </section>
