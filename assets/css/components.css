@@ -733,29 +733,3 @@ textarea.form-control {
 }
 
 .price--gold { color: var(--color-gold); }
-
-/* ============================================================
-   STYLE COMPOSANT : LIEN DE NAVIGATION ACTIF (FORCE)
-   ============================================================ */
-#site-header-placeholder a.active,
-.site-header a.active,
-.header-nav a.active,
-.nav-link.active {
-  color: var(--color-gold, #d4af37) !important;
-  font-weight: 600 !important;
-  opacity: 1 !important;
-}
-
-/* Ligne dorée sous le lien actif */
-#site-header-placeholder a.active::after,
-.header-nav a.active::after,
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-gold, #d4af37) !important;
-  display: block !important;
-}
