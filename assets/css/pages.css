@@ -242,7 +242,9 @@
   position: relative;
   overflow: hidden;
 }
-
+.service-card.reveal {
+  opacity: 1;
+}
 .service-card::before {
   content: '';
   position: absolute;
