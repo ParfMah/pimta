@@ -36,6 +36,12 @@
   transition: opacity var(--transition-base);
 }
 
+@media (max-width: 1024px) {
+  .btn::before {
+    display: none;
+  }
+}
+
 .btn:hover::before { opacity: 1; }
 
 /* Primary — Or */
