@@ -24,7 +24,16 @@
       transition: all var(--transition-slow);
       display: flex;
       flex-direction: column;
+      /* --- CORRECTION DÉFINITIVE ANTI-VIBRATION (SMEARING) --- */
+      position: relative;
+      z-index: 1;
+      isolation: isolate; /* Force un nouveau contexte d'empilement strict */
+      backface-visibility: hidden; /* Oblige l'accélération matérielle (GPU) */
+      -webkit-backface-visibility: hidden; /* Support pour Safari/iOS */
+      will-change: transform; /* Prévient le navigateur de l'animation au scroll */
+      /* ------------------------------------------------------- */
     }
+
     .service-detail-card:hover {
       box-shadow: var(--shadow-xl);
       transform: translateY(-4px);
