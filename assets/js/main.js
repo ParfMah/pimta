@@ -27,7 +27,6 @@ function initAll() {
   initToasts();
   setActivePage();
   initCartBadge();
-  initServiceCards();
 }
 
 // ── HEADER SCROLL ────────────────────────────────────────────
@@ -578,21 +577,5 @@ document.addEventListener('submit', async (e) => {
     if (btn) { btn.disabled = false; btn.classList.remove('btn--loading'); }
   }
 });
-// ── SERVICE CARDS REVEAL (transform uniquement, sans opacity) ──
-function initServiceCards() {
-  const cards = document.querySelectorAll('.service-card');
-  if (!cards.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('card-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  cards.forEach(card => observer.observe(card));
-}
 console.log('%c🌿 PIMTABHAS', 'font-size:20px;color:#0F6A4B;font-weight:bold');
 console.log('%cPlateforme Internationale de Médecine Traditionnelle Africaine', 'color:#D4AF37');
