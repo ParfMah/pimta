@@ -23,8 +23,7 @@
 }
 
 .site-header--scrolled {
-  background: var(--header-scroll-bg);
-  backdrop-filter: var(--glass-blur);
+  background: rgba(10, 18, 30, 1);
   border-bottom: 1px solid rgba(212,175,55,0.1);
   box-shadow: 0 4px 30px rgba(0,0,0,0.3);
 }
