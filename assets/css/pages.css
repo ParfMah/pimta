@@ -231,7 +231,6 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* ── HOME: SERVICES ── */
 /* — HOME: SERVICES — */
 .service-card {
   background: var(--color-white);
@@ -241,19 +240,13 @@
   box-shadow: var(--shadow-card);
   position: relative;
   overflow: hidden;
-  transform: translateY(28px);
-  transition: transform 0.45s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.service-card.card-visible {
-  transform: translateY(0);
+.service-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-6px);
 }
-
-.service-card.card-visible:nth-child(2) { transition-delay: 0.07s; }
-.service-card.card-visible:nth-child(3) { transition-delay: 0.14s; }
-.service-card.card-visible:nth-child(4) { transition-delay: 0.07s; }
-.service-card.card-visible:nth-child(5) { transition-delay: 0.14s; }
-.service-card.card-visible:nth-child(6) { transition-delay: 0.21s; }
 
 .service-card::before {
   content: '';
@@ -268,11 +261,7 @@
 
 @media (max-width: 1024px) {
   .service-card::before { display: none; }
-}
-
-.service-card:hover {
-  box-shadow: var(--shadow-xl);
-  transform: translateY(-6px);
+  .service-card:hover { transform: none; box-shadow: var(--shadow-card); }
 }
 
 .service-card:hover::before { transform: scaleX(1); }
