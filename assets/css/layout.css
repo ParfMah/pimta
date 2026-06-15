@@ -476,7 +476,6 @@
   cursor: pointer;
   transition: all var(--transition-spring);
   text-decoration: none;
-  animation: pulse-whatsapp 2.5s ease-in-out infinite;
 }
 
 .whatsapp-btn:hover {
